@@ -1,0 +1,139 @@
+
+package edtrimestral3;
+/**
+ *
+ * @author Jose Luis Ruz Gil
+ */
+
+public class Cafetera implements interfazCafeteria {
+    
+    /**
+     * 
+     */
+    private int capacidadMaxima;
+    private int cantidadActual;
+    public Cafetera(int capacidadMaxima, int cantidadActual) {
+        this.cantidadActual = cantidadActual;
+        this.capacidadMaxima = Math.max(capacidadMaxima, cantidadActual);
+    }
+    
+    /**
+     * capacidad maxima de la cafetera
+     * @param capacidadMaxima 
+     */
+
+    public Cafetera(int capacidadMaxima) {
+        this(capacidadMaxima, 0);
+    }
+    
+    /**
+     * 
+     */
+
+    public Cafetera() {
+        this(1000, 0);
+    }
+    
+    /**
+     * develve el valor de la capacidad maxima de la cafetera
+     * @return 
+     */
+
+
+    public int get_capacidadMaxima() {
+        return getCapacidadMaxima();
+    }
+    
+    /**
+     * capacidad maxima de la cafetera
+     * @param capacidadMaxima 
+     */
+
+    public void set_capacidadMaxima(int capacidadMaxima) {
+        this.setCapacidadMaxima(capacidadMaxima);
+    }
+    
+    /**
+     * 
+     */
+
+    public void llenarCafetera() {
+        setCantidadActual(getCapacidadMaxima());
+    }
+    
+    /**
+     * tamaña de la taza
+     * @param tamanoTaza
+     * excepcion en caso de que de la cantidad de cafe no sea mayor a cero 
+     * @throws Exception 
+     */
+
+
+
+
+    public void servirTaza(int tamanoTaza) throws Exception {
+        setCantidadActual(getCantidadActual() - tamanoTaza);
+		if (getCantidadActual() <0){
+			setCantidadActual(0);
+ 			throw new Exception("No hay café");
+		}
+    }
+    
+    /**
+     * 
+     */
+
+    public void vaciarCafetera() {
+        setCantidadActual(0);
+    }
+    
+    /**
+     * cantidad de cafe
+     * @param cantidad
+     * excepcion para cuando la cantidad actual sea mayor a la capacidad maxima
+     * @throws Exception 
+     */
+
+
+    public void agregarCafe(int cantidad) throws Exception {
+        setCantidadActual(getCantidadActual() + cantidad);
+		if (getCantidadActual() > getCapacidadMaxima()){
+			setCantidadActual(getCapacidadMaxima());
+ 			throw new Exception("Rebosa");
+		}
+
+    }
+
+    /**
+     * devuelve el valor de la capacidad maxima de la taza
+     * @return the capacidadMaxima
+     */
+    public int getCapacidadMaxima() {
+        return capacidadMaxima;
+    }
+
+    /**
+     * capacidad maxima de la taza
+     * @param capacidadMaxima the capacidadMaxima to set
+     */
+    public void setCapacidadMaxima(int capacidadMaxima) {
+        this.capacidadMaxima = capacidadMaxima;
+    }
+
+    /**
+     * devuelve la cantidad actual de cafe
+     * @return the cantidadActual
+     */
+    public int getCantidadActual() {
+        return cantidadActual;
+    }
+
+    /**
+     * cantidad actual de cafe
+     * @param cantidadActual the cantidadActual to set
+     */
+    public void setCantidadActual(int cantidadActual) {
+        this.cantidadActual = cantidadActual;
+    }
+    
+}
